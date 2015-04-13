@@ -9,18 +9,24 @@ app.directive('map', function ($timeout, Organisations, $modal, appConfig, mapSe
             mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v4/examples.map-i87786ca/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
             });
-            locate = false;
-            map = L.mapbox.map('map');
+
+            locate = true;
+
+            map = L.mapbox.map('map', 'tonylucas.l5j344b8', {
+                minZoom: 3
+            });
+
             map.addLayer(mapboxTiles);
+
             if (locate) {
                 map.locate({
                     setView: true,
-                    maxZoom: 10
+                    maxZoom: 15
                 });
+            } else {
+                map.setView([48.8, 2.3], 12);
             }
-            if (!locate) {
-                map.setView([48.8, 2.3], 10);
-            }
+
             mapService.myLayer = L.mapbox.featureLayer().addTo(map);
             _ref = scope.organizations;
             for (_i = 0, _len = _ref.length; _i < _len; _i++) {

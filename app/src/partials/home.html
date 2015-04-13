@@ -1,7 +1,4 @@
 <div class="large-3 columns right text-center sidebar" ng-show="mapView.active" style="overflow:scroll;max-height:100%;">
-    <h4>Welcome to Transition&nbsp;Ways&nbsp;!</h4>
-    <button class="button small radius" ng-click="showMapView()">Map</button>
-    <button class="button small radius" ng-click="showListView()">List</button>
 
     <div ng-repeat="org in organizations" class="radius panel">
         <div class="row valign-middle">
@@ -21,11 +18,7 @@
 
 
 
-<div class="medium-12 large-9 columns no-padding" ng-show="mapView.active">
-    <div class="over-map-btns hide-for-large-up">
-        <button class="button tiny radius" ng-click="showMapView()">Map</button>
-        <button class="button tiny radius" ng-click="showListView()">List</button>
-    </div>
+<div class="medium-12 large-9 columns no-padding hide-for-small" ng-show="mapView.active">
     <map id="map" defaults="defaults"></map>
 </div>
 
@@ -36,11 +29,6 @@
     <div class="row">
         <div class="small-4 columns">
             <h1>Structures</h1>
-        </div>
-        <div class="small-3 columns text-right">
-            <br>
-            <button class="button small radius" ng-click="showMapView()">Map</button>
-            <button class="button small radius" ng-click="showListView()">List</button>
         </div>
     </div>
 

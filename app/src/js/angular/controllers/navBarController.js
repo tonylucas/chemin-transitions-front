@@ -1,16 +1,21 @@
-app.controller('NavBarController', function ($scope, $modal, authService, $state) {
+app.controller('NavBarController', function ($scope, $modal, authService, $state, $rootScope) {
     $(document).foundation();
     $scope.openLogin = function () {
-        return authService.showLogin();
+        authService.showLogin();
     };
     $scope.openRegister = function () {
-        return authService.showRegister();
+        authService.showRegister();
     };
-    return $scope.logout = function () {
-        console.log("go");
+    $scope.logout = function () {
         authService.destroySession();
-        return $state.go('index').then(function () {
-            return $state.reload();
+        $state.go('index').then(function () {
+            $state.reload();
         });
     };
+
+    $scope.toggleViewMode = function ($event) {
+        $('.top-bar-section button').removeClass('active');
+        $($event.currentTarget).addClass('active');
+        $rootScope.$broadcast('toggleViewMode');
+    }
 });

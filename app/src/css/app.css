@@ -13,6 +13,9 @@
   .view-navbar .autocomplete ul {
     top: 38px; }
 
+.top-bar-section .active {
+  background: #007095; }
+
 .popup img {
   max-height: 100px; }
 .popup .tag {
@@ -37,13 +40,11 @@
 .dropzone {
   border: 2px dashed #313131;
   border-radius: 3px;
-  -webkit-transition: all 300ms;
-          transition: all 300ms; }
+  transition: all 300ms; }
 
 .dropzone:active {
   border: 2px solid #292929;
-  -webkit-transition: all 300ms;
-          transition: all 300ms; }
+  transition: all 300ms; }
 
 .panel {
   background: #f8f8f8;
@@ -66,14 +67,12 @@
   border-radius: 3px;
   font-size: 12px;
   display: inline-block;
-  -webkit-transition: all 300ms;
-          transition: all 300ms;
+  transition: all 300ms;
   text-transform: capitalize; }
 
 .tag:hover {
   background: #56a02c;
-  -webkit-transition: all 300ms;
-          transition: all 300ms;
+  transition: all 300ms;
   color: white; }
 
 .valign-middle {
