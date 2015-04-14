@@ -21,12 +21,15 @@ app.controller('UsersController', function ($scope, authService, userData, skill
         }
     });
     skillData.getSkills().then(function (data) {
+        console.log(data)
         return $scope.skills = data;
     });
     userData.getPersons().then(function (data) {
+        console.log(data)
         return $scope.persons = data;
     });
     $scope.update = function (form, user) {
+        console.log(user)
         if (form.$invalid) {
             $scope.alerts.push({
                 type: 'alert-box warning radius',
@@ -48,6 +51,7 @@ app.controller('UsersController', function ($scope, authService, userData, skill
         return Organisations.addActor(actor, authService.user).then(function (data) {});
     };
     $scope.removeActor = function (actor) {
+        console.log(actor)
         return Organisations.removeActor(actor, authService.user).then(function (data) {});
     };
     return $scope.setUpload = function () {
