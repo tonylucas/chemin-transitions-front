@@ -5,6 +5,7 @@ app.controller('UsersController', function ($scope, authService, userData, skill
         return $scope.alerts.splice(index, 1);
     };
     userData.getCurrentUser().then(function (data) {
+        console.log(data)
         $scope.user = data;
         authService.user = data;
         $scope.setUpload();
