@@ -13,6 +13,9 @@
   .view-navbar .autocomplete ul {
     top: 38px; }
 
+.autocomplete ul.suggestion-list {
+    top: 0;
+}
 .top-bar-section .active {
   background: #007095; }
 

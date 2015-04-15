@@ -5,7 +5,6 @@ app.controller('UsersController', function ($scope, authService, userData, skill
         return $scope.alerts.splice(index, 1);
     };
     userData.getCurrentUser().then(function (data) {
-        console.log(data)
         $scope.user = data;
         authService.user = data;
         $scope.setUpload();
@@ -22,15 +21,14 @@ app.controller('UsersController', function ($scope, authService, userData, skill
         }
     });
     skillData.getSkills().then(function (data) {
-        console.log(data)
         return $scope.skills = data;
     });
+
     userData.getPersons().then(function (data) {
-        console.log(data)
+
         return $scope.persons = data;
     });
     $scope.update = function (form, user) {
-        console.log(user)
         if (form.$invalid) {
             $scope.alerts.push({
                 type: 'alert-box warning radius',
@@ -48,6 +46,18 @@ app.controller('UsersController', function ($scope, authService, userData, skill
             return $scope.closeAlert();
         }), 4000);
     };
+
+    $scope.loadSkills = function($query) {
+        return $scope.skills.filter(function(skill){
+            return skill.name.toLowerCase().match($query.toLowerCase());
+        })
+    }
+
+    $scope.loadPersons = function($query) {
+        return $scope.persons.filter(function(person){
+            return person.fullName.toLowerCase().match($query.toLowerCase());
+        })
+    }
     $scope.addActor = function (actor) {
         return Organisations.addActor(actor, authService.user).then(function (data) {});
     };

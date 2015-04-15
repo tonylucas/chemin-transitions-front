@@ -98,7 +98,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: 'partials/users/profile.html'   
     }).state('index.invitation', {
         url: "/invitation/:id",
-        controller: 'RegisterController'
+        controller: 'RegisterController',
+        onEnter: function (authService) {
+            authService.showRegister();
+        },
     }).state('structures', {
         url: "/structures",
         views: {
