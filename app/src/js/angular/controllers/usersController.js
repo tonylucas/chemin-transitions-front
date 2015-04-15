@@ -50,7 +50,7 @@ app.controller('UsersController', function ($scope, authService, userData, skill
     $scope.removeActor = function (actor) {
         return Organisations.removeActor(actor, authService.user).then(function (data) {});
     };
-    return $scope.setUpload = function () {
+    $scope.setUpload = function () {
         $scope.dropzoneConfig = {
             url: appConfig.url('users/upload/image/' + authService.user.id),
             maxFiles: 1,
@@ -62,6 +62,32 @@ app.controller('UsersController', function ($scope, authService, userData, skill
                 };
                 mockFile = {
                     name: "avatar",
+                    size: 12345
+                };
+                return this.on("maxfilesexceeded", function (file) {
+                    this.removeAllFiles();
+                    return this.addFile(file);
+                });
+            }
+        };
+        return $scope.eventHandlers = {
+            success: function (file, response) {
+                return $scope.avatar = response;
+            }
+        };
+    };
+    $scope.setUploadCarousel = function () {
+        $scope.dropzoneConfig = {
+            url: appConfig.url('users/upload/image/' + authService.user.id),
+            maxFiles: 5,
+            dictDefaultMessage: "Drag your images here",
+            init: function () {
+                var mockFile;
+                mockFile = {
+                    name: 'test'
+                };
+                mockFile = {
+                    name: "carousel",
                     size: 12345
                 };
                 return this.on("maxfilesexceeded", function (file) {

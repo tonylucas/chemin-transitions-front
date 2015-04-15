@@ -13,7 +13,7 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
         }
         return _results;
     });
-    return $scope.filter = function (data) {
+    $scope.filter = function (data) {
         mapService.myLayer.setFilter(function (t) {
             if (data === "") {
                 return true;
