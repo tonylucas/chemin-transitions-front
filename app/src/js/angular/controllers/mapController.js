@@ -1,3 +1,3 @@
 app.controller('MapController', function ($scope, $modal, authService) {
-    return $scope.open = function (size) {};
+    $scope.open = function (size) {};
 });

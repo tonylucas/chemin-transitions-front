@@ -14,8 +14,10 @@ app.controller('NavBarController', function ($scope, $modal, authService, $state
     };
 
     $scope.toggleViewMode = function ($event) {
-        $('.top-bar-section button').removeClass('active');
-        $($event.currentTarget).addClass('active');
-        $rootScope.$broadcast('toggleViewMode');
+        if (!$($event.currentTarget).hasClass('active')) {
+            $('.top-bar-section button').removeClass('active');
+            $($event.currentTarget).addClass('active');
+            $rootScope.$broadcast('toggleViewMode');
+        }
     }
 });
