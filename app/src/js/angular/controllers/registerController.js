@@ -1,6 +1,8 @@
-app.controller('RegisterController', function ($scope, authService, userData, $state) {
+app.controller('RegisterController', function ($scope, authService, userData, $state, $stateParams) {
     $scope.type = false;
     $scope.autocomplete = {};
+    $scope.invitation = authService.invitation;
+    $scope.user = authService.user;
     $scope.cancel = function () {
         return authService.hideRegister();
     };
@@ -22,7 +24,7 @@ app.controller('RegisterController', function ($scope, authService, userData, $s
             });
         }
     };
-    return $scope.typeChange = function (user) {
+    $scope.typeChange = function (user) {
         if (user.type === "Organization") {
             return $scope.type = false;
         } else {

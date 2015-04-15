@@ -37,7 +37,6 @@ app.directive('map', function ($timeout, Organisations, $modal, appConfig, mapSe
             mapService.myLayer.setGeoJSON(scope.organizations);
             return mapService.myLayer.eachLayer(function (layer) {
                 var popupContent;
-                console.log(layer);
                 popupContent = "<div class='text-center popup'><strong>" + layer.feature.properties.name + "</strong>" + "<br><img src='" + layer.feature.avatar + "'><br>";
                 angular.forEach(layer.feature.properties.skills, function (value) {
                     return popupContent = popupContent + "<span class='tag'>" + value.name + "</span>";
@@ -53,7 +52,6 @@ app.directive('map', function ($timeout, Organisations, $modal, appConfig, mapSe
                 layer.on('click', function (e) {
                     return scope.showModal(e);
                 });
-                console.log(layer);
                 return mapService.myLayer.addLayer(layer);
             });
         }

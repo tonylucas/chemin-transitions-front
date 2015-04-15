@@ -1,9 +1,10 @@
-app.controller('InvitationController', function ($scope, $modalInstance, authService, userData, $state) {
+app.controller('InvitationController', function ($scope, authService, userData, $state, $stateParams) {
     $scope.mail = {};
     userData.getCurrentUser().then(function (user) {
         $scope.user         = user;
         $scope.mail.from    = user.email;
-        $scope.mail.subject = "Invitation" 
+        $scope.mail.subject = "Invitation"
+        $scope.mail.type = "Organization"
     });
     $scope.cancel = function() {
          return authService.hideInvitation();

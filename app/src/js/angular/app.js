@@ -99,9 +99,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     }).state('index.invitation', {
         url: "/invitation/:id",
         controller: 'RegisterController',
-        onEnter: function (authService) {
-            authService.showRegister();
-        },
+        onEnter: function (authService, userData, $stateParams, $state, ipCookie) {
+            if(ipCookie('token')) {
+                return $state.go('index');
+            }
+            userData.getInvitation($stateParams.id).then(function(invitation){
+                if(!invitation || invitation.enable == false) {
+                   return $state.go('index');
+                }
+                authService.setInvitation(invitation);
+                authService.showRegister();
+            })
+        }
     }).state('structures', {
         url: "/structures",
         views: {

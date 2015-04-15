@@ -3,6 +3,15 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
         user: {},
         token: null,
         needsLogin: false,
+        invitation: {
+            active: false
+        },
+
+        setInvitation: function(invitation) {
+            this.invitation = invitation;
+            this.invitation.active = true;
+            this.user.email = invitation.email;
+        },
         setSession: function (user) {
             this.user = user;
             this.token = user.token;
@@ -73,7 +82,8 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
         },
         destroySession: function () {
             ipCookie.remove('token');
-            return ipCookie.remove('email');
+            ipCookie.remove('email');
+            this.user = {};
         },
         getGeocode: function (data) {
             var deferred, geocoder, latlng;
