@@ -54,6 +54,20 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
                 return $scope.selected = selectedItem;
             });
         },
+
+        showInvitation: function (size) {
+            this.invitation = $modal.open({
+                templateUrl: 'partials/invitation.html',
+                controller: 'InvitationController',
+                windowClass: 'tiny'
+            });
+            this.invitation.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            });      
+        },
+        hideInvitation: function () {
+            return this.invitation.dismiss('cancel');
+        },
         hideRegister: function () {
             return this.register.dismiss('cancel');
         },

@@ -6,6 +6,11 @@ app.controller('NavBarController', function ($scope, $modal, authService, $state
     $scope.openRegister = function () {
         authService.showRegister();
     };
+
+    $scope.openInvitation = function() {
+        authService.showInvitation();
+    };
+
     $scope.logout = function () {
         authService.destroySession();
         $state.go('index').then(function () {

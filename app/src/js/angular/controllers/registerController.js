@@ -1,4 +1,4 @@
-app.controller('RegisterController', function ($scope, $modalInstance, authService, userData, $state) {
+app.controller('RegisterController', function ($scope, authService, userData, $state) {
     $scope.type = false;
     $scope.autocomplete = {};
     $scope.cancel = function () {

@@ -95,7 +95,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     }).state('users.profile', {
         url: "/profile",
         controller: 'UsersController',
-        templateUrl: 'partials/users/profile.html'
+        templateUrl: 'partials/users/profile.html'   
+    }).state('index.invitation', {
+        url: "/invitation/:id",
+        controller: 'RegisterController'
     }).state('structures', {
         url: "/structures",
         views: {
