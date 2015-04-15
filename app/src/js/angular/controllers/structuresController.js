@@ -16,10 +16,7 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
         }
         return _results;
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> 2e02a21653c7076ed229a69a6cf4ffad30fa91dc
+    
     $scope.filter = function (data) {
         mapService.myLayer.setFilter(function (t) {
             if (data === "") {
