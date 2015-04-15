@@ -1,4 +1,3 @@
-.dropzone,.dropzone:active,.tag,.tag:hover{transition:all 300ms}
 .dropzone,.tag{border-radius:3px}
 .autocomplete,.autocomplete li,.autocomplete li.active,.panel .avatar img,.view-navbar{width:100%}
 .tag,tags-input .tags .tag-item{text-transform:capitalize}
@@ -7,8 +6,9 @@
 .view-navbar{position:fixed;z-index:1000}
 .view-navbar .autocomplete ul{top:38px}
 .top-bar-section .active{background:#007095}
-.popup img{max-height:100px}
-.popup .tag{margin:8px 3px 3px}
+.leaflet-popup-content a{font-weight:700;color:#303030}
+.leaflet-popup-content a:hover{color:#6a6a6a;transition:300ms}
+.dropzone,.dropzone:active,.tag,.tag:hover{transition:all 300ms}
 .no-padding{padding:0!important}
 .pac-container{z-index:1005}
 .over-map-btns{position:absolute;top:5px;display:block;right:5px;z-index:2}
