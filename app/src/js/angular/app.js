@@ -54,7 +54,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             }
         }
     }).state('index.news', {
-        url: '/',
+        url: '/structures',
         templateUrl: 'partials/structures/index.html'
     }).state('index.skills', {
         url: '/skills',

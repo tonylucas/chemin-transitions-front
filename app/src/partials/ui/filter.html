@@ -1,19 +1,46 @@
-<div class="row collapse">
-    {{data}}
-    <div class="large-8 small-9 columns" style="width: 100%">
-        <autocomplete on-select="filter" attr-class="filter-result" ng-model="yourchoice" data="searchResults" on-type="updateMovies" attr-placeholder="{{placeholder}}"></autocomplete>
-    </div>
-</div>
+<table id="searchTextResults" ng-show="searchText" class="searchTextResults">
+    <input ng-model="searchText" ng-change="filterDatas()" placeholder="Search...">
 
+    <tr ng-show="actorsResults.length">
+        <td><strong>Actors</strong>
+        </td>
+    </tr>
+    <tr ng-repeat="data in actorsResults = (filteredActors | andFilter: searchText: 'AND')">
+        <!--    <tr ng-repeat="data in actorsResults = (filteredActors | andOrFilter: searchText: 'AND')">-->
+        <td><a href="#" ng-click="">{{data.name}}</a>
+        </td>
+    </tr>
+
+
+    <tr ng-show="structuresResult.length">
+        <td><strong>Structures</strong>
+        </td>
+    </tr>
+    <tr ng-repeat="data in structuresResult = (filteredStructures | andFilter: searchText: 'AND')">
+        <td><a href="#" ng-click="">{{data.name}}</a>
+        </td>
+    </tr>
+
+    <tr ng-show="skillsResults.length">
+        <td><strong>Skills</strong>
+        </td>
+    </tr>
+    <tr ng-repeat="data in skillsResults = (filteredSkills | andFilter: searchText: 'AND')">
+        <td><a href="#" ng-click="">{{data.name}}</a>
+        </td>
+    </tr>
+
+
+</table>
 
 
 <!--
 <div class="row collapse">
-    {{data}}
-    <div class="large-8 small-9 columns" style="width: 100%">
-        <autocomplete on-select="filter" attr-class="filter-result" ng-model="yourchoice" data="movies" on-type="updateMovies" attr-placeholder="{{placeholder}}"></autocomplete>
-    </div>
-    <div class="small-2 columns">
-        <a href="#" class="button postfix">By</a>
-    </div>
+{{data}}
+<div class="large-8 small-9 columns" style="width: 100%">
+<autocomplete on-select="filter" attr-class="filter-result" ng-model="yourchoice" data="movies" on-type="updateMovies" attr-placeholder="{{placeholder}}"></autocomplete>
+</div>
+<div class="small-2 columns">
+<a href="#" class="button postfix">By</a>
+</div>
 </div>-->

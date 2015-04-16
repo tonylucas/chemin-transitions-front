@@ -17,6 +17,26 @@
     }
 }
 
+.searchTextResults {
+    width: 100%;
+}
+
+.search-form input {
+    width: 280px;
+    padding-left: 8px;
+    border-radius: 3px;
+}
+
+#searchTextResults td a {
+   color: #464646;
+    text-transform: capitalize;
+}
+
+#searchTextResults td:hover {
+    background: rgb(234, 234, 234);
+    cursor: pointer;
+}
+
 .top-bar-section {
     .active {
         background: #007095;
