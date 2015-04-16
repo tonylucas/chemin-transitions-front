@@ -1,16 +1,20 @@
 app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
     return {
-        user: {},
+        user: {
+            type: 'Organization'
+        },
         token: null,
         needsLogin: false,
         invitation: {
-            active: false
+            active: false,
+            type: 'Person'
         },
 
         setInvitation: function(invitation) {
             this.invitation = invitation;
             this.invitation.active = true;
             this.user.email = invitation.email;
+            this.user.type = invitation.type;
         },
         setSession: function (user) {
             this.user = user;

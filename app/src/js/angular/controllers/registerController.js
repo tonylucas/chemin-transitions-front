@@ -9,7 +9,7 @@ app.controller('RegisterController', function ($scope, authService, userData, $s
     $scope.register = function (registerForm, user) {
         authService.setUserCoordinates(user, $scope.autocomplete);
         if (!registerForm.$invalid) {
-            return userData.create(user).then(function (result) {
+            userData.create(user).then(function (result) {
             userData.login(user).then(function (user) {
                 authService.setSession(user);
                 $state.go('index').then(function () {
