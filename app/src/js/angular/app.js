@@ -95,7 +95,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     }).state('users.profile', {
         url: "/profile",
         controller: 'UsersController',
-        templateUrl: 'partials/users/profile.html'
+        templateUrl: 'partials/users/profile.html'   
+    }).state('index.invitation', {
+        url: "/invitation/:id",
+        controller: 'RegisterController',
+        onEnter: function (authService, userData, $stateParams, $state, ipCookie) {
+            if(ipCookie('token')) {
+                return $state.go('index');
+            }
+            userData.getInvitation($stateParams.id).then(function(invitation){
+                if(!invitation || invitation.enable == false) {
+                   return $state.go('index');
+                }
+                authService.setInvitation(invitation);
+                authService.showRegister();
+            })
+        }
     }).state('structures', {
         url: "/structures",
         views: {

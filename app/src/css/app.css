@@ -116,6 +116,9 @@
 .autocomplete ul {
   top: 40px; }
 
+.autocomplete ul.suggestion-list {
+  top: 0; }
+
 .autocomplete li {
   text-align: left;
   list-style: none;

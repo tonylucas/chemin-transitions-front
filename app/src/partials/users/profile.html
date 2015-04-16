@@ -33,12 +33,12 @@
 
                     <label>Skills:</label>
                     <tags-input ng-model="user.skills" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="false">
-                        <auto-complete source="skills"></auto-complete>
+                        <auto-complete source="loadSkills($query)" load-on-focus="true"></auto-complete>
                     </tags-input>
 
                     <label>Actors:</label>
                     <tags-input template="actors.html" display-property="fullName" ng-model="user.actors" display-property="name" replace-spaces-with-dashes="false" add-from-autocomplete-only="true" on-tag-added="addActor($tag)" on-tag-removed="removeActor($tag)">
-                        <auto-complete source="persons"></auto-complete>
+                        <auto-complete source="loadPersons($query)"></auto-complete>
                     </tags-input>
 
                     <br>

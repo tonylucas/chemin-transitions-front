@@ -8,7 +8,7 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
             $('#map').parents().height('100%'); // Faire en CSS
 
             L.mapbox.accessToken = 'pk.eyJ1IjoidG9ueWx1Y2FzIiwiYSI6IlRqa09UbE0ifQ.DGFIsGazdBZSk0t2PYe6Zw';
-            
+
             mapboxTiles = L.tileLayer('https://{s}.tiles.mapbox.com/v4/examples.map-i87786ca/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                 attribution: '<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>'
             });
@@ -39,6 +39,7 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
             }
             mapService.myLayer.setGeoJSON(scope.organizations);
 
+
             mapService.myLayer.eachLayer(function (layer) {
                 var popupContent = "<div class='text-center popup'><a href='#structures/" + layer.feature.id + "'>" + layer.feature.properties.name + "</a></div>";
 
@@ -49,6 +50,7 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
                 });
 
                 mapService.myLayer.addLayer(layer);
+
             });
         }
     };

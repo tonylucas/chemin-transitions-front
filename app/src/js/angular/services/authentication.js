@@ -1,8 +1,21 @@
 app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
     return {
-        user: {},
+        user: {
+            type: 'Organization'
+        },
         token: null,
         needsLogin: false,
+        invitation: {
+            active: false,
+            type: 'Person'
+        },
+
+        setInvitation: function(invitation) {
+            this.invitation = invitation;
+            this.invitation.active = true;
+            this.user.email = invitation.email;
+            this.user.type = invitation.type;
+        },
         setSession: function (user) {
             this.user = user;
             this.token = user.token;
@@ -54,12 +67,27 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
                 return $scope.selected = selectedItem;
             });
         },
+
+        showInvitation: function (size) {
+            this.invitation = $modal.open({
+                templateUrl: 'partials/invitation.html',
+                controller: 'InvitationController',
+                windowClass: 'tiny'
+            });
+            this.invitation.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            });      
+        },
+        hideInvitation: function () {
+            return this.invitation.dismiss('cancel');
+        },
         hideRegister: function () {
             return this.register.dismiss('cancel');
         },
         destroySession: function () {
             ipCookie.remove('token');
-            return ipCookie.remove('email');
+            ipCookie.remove('email');
+            this.user = {};
         },
         getGeocode: function (data) {
             var deferred, geocoder, latlng;

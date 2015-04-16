@@ -31,10 +31,9 @@
 
             <ul>
                 <user ng-switch-when="true">
-                    <li><a ui-sref="users.profile">Profile</a>
-                    </li>
-                    <li><a ng-click="logout()">Logout</a>
-                    </li>
+                    <li><a ui-sref="users.profile">Profile</a></li>
+                    <li><a ng-click="openInvitation()">Invitation</a></li>
+                    <li><a ng-click="logout()">Logout</a></li>
                 </user>
                 <user ng-switch-when="false">
                     <li><a ng-click="openRegister()">Sign up</a>

@@ -28,7 +28,7 @@
 }
 
 #searchTextResults td a {
-   color: #464646;
+    color: #464646;
     text-transform: capitalize;
 }
 
@@ -151,6 +151,10 @@
 
 .autocomplete ul {
     top: 40px;
+}
+
+.autocomplete ul.suggestion-list {
+    top: 0;
 }
 
 .autocomplete li {

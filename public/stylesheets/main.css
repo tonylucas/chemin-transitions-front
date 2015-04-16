@@ -29,6 +29,7 @@
 .valign-middle>.columns,.valign-middle>[class*=column]+[class*=column]:last-child{float:none}
 .autocomplete input{width:100%;padding:.4em;border-radius:3px;font-size:13px;border:none}
 .autocomplete ul{top:40px}
+.autocomplete ul.suggestion-list{top:0}
 .autocomplete li{text-align:left;list-style:none;padding:.4em;background-color:#fff;color:#fff;font-size:.8em;font-weight:400}
 .autocomplete .highlight{background:#008CBA}
 .autocomplete li.active .highlight{background:#666;color:#fff}
