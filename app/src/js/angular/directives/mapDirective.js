@@ -40,13 +40,19 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
                     org.avatar = appConfig.domain() + org.image;
                     org.properties['marker-color'] = '#f86767';
                 }
-                mapService.myLayer.setGeoJSON(orgs);
+                    Organisations.getTechonmapDatas().then(function(techonmapOrgs){
 
-                mapService.initMarkers();
+                        for (_i = 0, _len = techonmapOrgs.length; _i < _len; _i++) {
+                            org = techonmapOrgs[_i];
+                            org.avatar = appConfig.domain() + org.image;
+                            org.properties['marker-color'] = '#f86767';
+                        }
+
+                    mapService.myLayer.setGeoJSON(_.union(orgs,techonmapOrgs));
+
+                    mapService.initMarkers();
+                });
             });
-            
-           
-            
         }
     };
 });
