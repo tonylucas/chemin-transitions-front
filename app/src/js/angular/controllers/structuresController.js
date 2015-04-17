@@ -1,10 +1,8 @@
-app.controller('StructuresController', function ($scope, $stateParams, appConfig, mapService, Organisations, userData, skillData, $timeout, $filter, $rootScope) {
 
+app.controller('StructuresController', function ($scope, $stateParams, appConfig, mapService, Organisations, userData, skillData, $timeout, $filter, $rootScope) {
     $scope.filteredStructures = [];
     $scope.filteredActors = [];
     $scope.filteredSkills = [];
-    
-    $scope.home = $scope.$parent;
 
     $scope.orgs = Organisations.getOrganisations().then(function (orgs) {
         angular.forEach(orgs, function (org, key) {
@@ -53,14 +51,11 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
         });
     });
 
-    $scope.test = function() {
-    }
     $scope.filterSkills = function (skill) {
         var filteredOrgs = [];
         filteredOrgs = mapService.filterMarkers(skill.name);
         
         $rootScope.$broadcast('updateStructuresList', filteredOrgs);
-        
         mapService.fitMap();
         $scope.searchText = skill.name;
     }

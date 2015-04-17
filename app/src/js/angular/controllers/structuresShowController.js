@@ -1,13 +1,11 @@
-app.controller('StructuresShowController', function ($scope, $stateParams, Organisations) {
-    Organisations.getOrganization($stateParams.id).then(function (data) {
-        $scope.org = data;
-    });
+app.controller('StructuresShowController', function ($scope, $stateParams, Organisations, appConfig, authService) {
+    $scope.domain = appConfig.domain();
 
-    $('.carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear'
+    Organisations.getOrganisation($stateParams.id).then(function (data) {
+        $scope.org = data;
+        authService.getGeocode(data).then(function (response){
+            $scope.address = response[0].formatted_address;
+        });
+        
     });
 });

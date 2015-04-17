@@ -20,13 +20,14 @@
 
                     <input type="text" ng-model="user.name" required placeholder="Name" class="radius">
                     <input type="text" id="Autocomplete" class="form-control radius" ng-autocomplete ng-model="autocomplete.coordinates" details="autocomplete.details">
+                    
+                    <label>Phone:</label>
+                    <input type="text" ng-model="user.phone" placeholder="Your phone" class="radius">
 
                     <label>Description:</label>
-                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                    <textarea name="description" id="description" ng-model="user.description" cols="30" rows="10"></textarea>
 
-                    <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfig" event-handlers="eventHandlers" ng-hide="carousel">
-                        <input name="file" type="file" multiple />
-                    </form>
+                    <img ng-src="{{carousel}}" alt="carousel" ng-show="carousel">
 
                     <label>Url:</label>
                     <input type="text" ng-model="user.url" placeholder="URL" class="radius">
@@ -43,6 +44,10 @@
 
                     <br>
                     <button ng-click="update(organizationForm, user)" ng-disabled="organizationForm.$invalid" type="button" class="button  small success radius">Update</button>
+
+                </form>
+
+                <form class="dropzone" method="post" enctype="multipart/form-data" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfigCarousel" event-handlers="eventHandlersCarousel" ng-hide="carousel">
 
                 </form>
             </div>
