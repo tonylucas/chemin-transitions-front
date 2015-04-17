@@ -1,5 +1,6 @@
 app.controller('LoginController', function ($scope, $modalInstance, authService, userData, $state) {
     $scope.cancel = function () {
+        console.log($modalInstance.windowClass);
         return authService.hideLogin();
     };
     $scope.login = function (loginForm, user) {

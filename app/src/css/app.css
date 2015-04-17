@@ -145,3 +145,9 @@ tags-input .autocomplete .suggestion-list {
   border: 1px solid #9b9b9b;
   border-top: none;
   border-radius: 0 0 3px 3px; }
+
+.animated.fadeInDown {
+    -webkit-animation-duration: .8s;
+}
+
+

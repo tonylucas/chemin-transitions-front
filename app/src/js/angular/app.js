@@ -1,6 +1,6 @@
 var app;
 
-app = angular.module('app', ['ui.router', 'ipCookie', 'leaflet-directive', 'mm.foundation', 'ngAutocomplete', 'ngTagsInput', 'ngDropzone', 'autocomplete']);
+app = angular.module('app', ['ui.router', 'ipCookie', 'leaflet-directive', 'mm.foundation', 'ngAutocomplete', 'ngTagsInput', 'ngDropzone', 'autocomplete', 'ngAnimate']);
 
 app.run(function ($rootScope, $location, $state, authService, ipCookie) {
     return $rootScope.$on('$stateChangeStart', function (ev, to, toParams, from, fromParams) {
@@ -22,6 +22,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         resolve: {
             organizations: function (Organisations) {
                 return Organisations.getOrganizations().then(function (organisations) {
+                    console.log(organisations)
                     return organisations;
                 });
             }
