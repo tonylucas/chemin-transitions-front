@@ -1,8 +1,6 @@
-app.controller('HomeController', function ($scope, authService, Organisations, userData, skillData, $modal, appConfig, mapService, $timeout, $stateParams, $filter) {
+app.controller('HomeController', function ($scope, authService, organisations, Organisations, userData, skillData, $modal, appConfig, mapService, $timeout, $stateParams, $filter) {
 
-    Organisations.getOrganisations().then(function(orgs){
-        $scope.organisations = orgs;    
-    });
+    $scope.organisations = organisations;
 
     $timeout(function () {
         mapService.resetFilter();
@@ -46,6 +44,9 @@ app.controller('HomeController', function ($scope, authService, Organisations, u
         //        $scope.orgs = ;
         mapService.fitMap();
     }
-
+    
+    $scope.$on('updateStructuresList', function (event, filteredOrgs) {
+        $scope.organisations = filteredOrgs;
+    });
 
 });

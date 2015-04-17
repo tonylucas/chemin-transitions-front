@@ -31,22 +31,19 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
             }
 
             mapService.myLayer = L.mapbox.featureLayer().addTo(map);
-            
-            
-            
-            Organisations.getOrganisations().then(function(orgs){                
-                for (_i = 0, _len = orgs.length; _i < _len; _i++) {
-                    org = orgs[_i];
-                    org.avatar = appConfig.domain() + org.image;
-                    org.properties['marker-color'] = '#f86767';
-                }
-                mapService.myLayer.setGeoJSON(orgs);
 
-                mapService.initMarkers();
-            });
-            
-           
-            
+
+
+            var orgs = scope.organisations;
+            for (_i = 0, _len = orgs.length; _i < _len; _i++) {
+                org = orgs[_i];
+                org.avatar = appConfig.domain() + org.image;
+                org.properties['marker-color'] = '#f86767';
+            }
+            mapService.myLayer.setGeoJSON(orgs);
+
+            mapService.initMarkers();
+
         }
     };
 });

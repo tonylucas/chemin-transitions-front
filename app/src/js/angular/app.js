@@ -26,12 +26,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 "navbar": {
                     templateUrl: 'partials/navbar.html',
                     controller: "NavBarController",
-                    "filter": {
-                        templateUrl: 'partials/ui/filter.html',
-                        controller: "HomeController"
-                    }
                 }
 
+            },
+            resolve: {
+                organisations: function (Organisations) {
+                    return Organisations.getOrganisations().then(function(organizations){
+                        return organizations
+                    });
+                }
             },
             onEnter: function (authService) {
                 if (authService.needsLogin) {

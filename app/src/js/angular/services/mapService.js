@@ -53,11 +53,16 @@ app.service('mapService', function ($timeout) {
                 angular.forEach(feature.properties.skills, function (skill, key) {
                     if (skill.name === data) {
                         tmp = true;
+                        filteredStructures.push(feature);
                     }
                 });
                 that.initMarkers();
                 return tmp;
             });
+            
+            return filteredStructures;
+            
+            
         }
     };
 });
