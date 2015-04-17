@@ -17,6 +17,7 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
             this.user.type = invitation.type;
         },
         setSession: function (user) {
+            console.log(user)
             this.user = user;
             this.token = user.token;
             ipCookie('token', this.token, {
@@ -48,7 +49,7 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
             this.login = $modal.open({
                 templateUrl: 'partials/login.html',
                 controller: 'LoginController',
-                windowClass: 'tiny'
+                windowClass: 'tiny animated fadeInDown'
             });
             return this.login.result.then(function (selectedItem) {
                 return $scope.selected = selectedItem;
@@ -61,7 +62,7 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
             this.register = $modal.open({
                 templateUrl: 'partials/register.html',
                 controller: 'RegisterController',
-                windowClass: 'tiny'
+                windowClass: 'tiny animated fadeInDown'
             });
             return this.register.result.then(function (selectedItem) {
                 return $scope.selected = selectedItem;
@@ -72,7 +73,7 @@ app.service('authService', function (ipCookie, userData, $state, $modal, $q) {
             this.invitation = $modal.open({
                 templateUrl: 'partials/invitation.html',
                 controller: 'InvitationController',
-                windowClass: 'tiny'
+                windowClass: 'tiny animated fadeInDown'
             });
             this.invitation.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
