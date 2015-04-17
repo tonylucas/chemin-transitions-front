@@ -5,7 +5,7 @@ pngquant       = require('imagemin-pngquant');
 $              = require('gulp-load-plugins')()
 tasks          = ['concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress', 'index-dev', 'bower']
 productions    = ['concat', 'ngAnnotate', 'js-compress', 'compass', 'css-concat', 'css-compress','bower', 'partials']
-angularFile    = ['app/src/js/angular/app.js','app/src/js/angular/controllers/*.js','app/src/js/angular/directives/*.js','app/src/js/angular/services/*.js']
+angularFile    = ['app/src/js/angular/app.js','app/src/js/angular/**/*.js']
 browsers       = ["ie >= 9", "ie_mob >= 10", "ff >= 30", "chrome >= 34", "safari >= 7", "opera >= 23", "ios >= 7", "android >= 4.4", "bb >= 10"]
 
 watch = ->

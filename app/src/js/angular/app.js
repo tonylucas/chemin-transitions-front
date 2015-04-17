@@ -15,17 +15,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise(function ($injector, $location) {
         var $state;
         $state = $injector.get("$state");
-        return $state.go("index.structures");
+        return $state.go("index");
     });
     return $stateProvider.state('index', {
         url: "/map",
-        resolve: {
-            organizations: function (Organisations) {
-                return Organisations.getOrganizations().then(function (organisations) {
-                    return organisations;
-                });
-            }
-        },
         views: {
             "": {
                 templateUrl: "partials/home.html",
@@ -33,44 +26,20 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
             },
             "navbar": {
                 templateUrl: 'partials/navbar.html',
-                controller: "NavBarController"
+                controller: "NavBarController",
+                "filter": {
+                    templateUrl: 'partials/ui/filter.html',
+                    controller: "HomeController"
+                }
             }
+
         },
         onEnter: function (authService) {
             if (authService.needsLogin) {
                 return authService.showLogin();
             }
         }
-    }).state('index.structures', {
-        url: '/structures',
-        views: {
-            "": {
-                templateUrl: 'partials/structures/index.html',
-                controller: "StructuresController"
-            },
-            "filter": {
-                templateUrl: 'partials/ui/filter.html',
-                controller: "StructuresController"
-            }
-        }
-    }).state('index.news', {
-        url: '/structures',
-        templateUrl: 'partials/structures/index.html'
-    }).state('index.skills', {
-        url: '/skills',
-        views: {
-            "": {
-                templateUrl: 'partials/skills/index.html',
-                controller: "SkillsController"
-            },
-            "filter": {
-                templateUrl: 'partials/ui/filter.html',
-                controller: "SkillsController"
-            }
-        }
-    }).state('index.assets', {
-        url: '/assets',
-        templateUrl: 'partials/structures/index.html'
+
     }).state('index.actors', {
         url: '/actors',
         templateUrl: 'partials/structures/index.html'
@@ -95,17 +64,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     }).state('users.profile', {
         url: "/profile",
         controller: 'UsersController',
-        templateUrl: 'partials/users/profile.html'   
+        templateUrl: 'partials/users/profile.html'
     }).state('index.invitation', {
         url: "/invitation/:id",
         controller: 'RegisterController',
         onEnter: function (authService, userData, $stateParams, $state, ipCookie) {
-            if(ipCookie('token')) {
+            if (ipCookie('token')) {
                 return $state.go('index');
             }
-            userData.getInvitation($stateParams.id).then(function(invitation){
-                if(!invitation || invitation.enable == false) {
-                   return $state.go('index');
+            userData.getInvitation($stateParams.id).then(function (invitation) {
+                if (!invitation || invitation.enable == false) {
+                    return $state.go('index');
                 }
                 authService.setInvitation(invitation);
                 authService.showRegister();

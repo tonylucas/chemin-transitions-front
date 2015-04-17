@@ -13,7 +13,4 @@ app.controller('SkillsController', function ($scope, skillData, mapService, $tim
         }
         return _results;
     });
-//    return $scope.filter = function (data) {
-//        mapService.hasSkill(data);
-//    };
 });

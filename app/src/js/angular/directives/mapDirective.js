@@ -31,27 +31,22 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
             }
 
             mapService.myLayer = L.mapbox.featureLayer().addTo(map);
-            _ref = scope.organizations;
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-                org = _ref[_i];
-                org.avatar = appConfig.domain() + org.image;
-                org.properties['marker-color'] = '#f86767';
-            }
-            mapService.myLayer.setGeoJSON(scope.organizations);
+            
+            
+            
+            Organisations.getOrganisations().then(function(orgs){                
+                for (_i = 0, _len = orgs.length; _i < _len; _i++) {
+                    org = orgs[_i];
+                    org.avatar = appConfig.domain() + org.image;
+                    org.properties['marker-color'] = '#f86767';
+                }
+                mapService.myLayer.setGeoJSON(orgs);
 
-
-            mapService.myLayer.eachLayer(function (layer) {
-                var popupContent = "<div class='text-center popup'><a href='#structures/" + layer.feature.id + "'>" + layer.feature.properties.name + "</a></div>";
-
-                layer.bindPopup(popupContent);
-
-                layer.on('click', function (e) {
-                    layer.openPopup();
-                });
-
-                mapService.myLayer.addLayer(layer);
-
+                mapService.initMarkers();
             });
+            
+           
+            
         }
     };
 });

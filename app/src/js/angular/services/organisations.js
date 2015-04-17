@@ -1,6 +1,6 @@
 app.factory("Organisations", function ($http, $q, appConfig, ipCookie, authService) {
     return {
-        getOrganizations: function () {
+        getOrganisations: function () {
             var deferred;
             deferred = $q.defer();
             $http({
@@ -13,7 +13,7 @@ app.factory("Organisations", function ($http, $q, appConfig, ipCookie, authServi
             });
             return deferred.promise;
         },
-        getOrganization: function (id) {
+        getOrganisation: function (id) {
             var deferred;
             deferred = $q.defer();
             $http({
