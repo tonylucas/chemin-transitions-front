@@ -1,3 +1,6 @@
+body {
+  background: #F0F0F0; }
+
 #map {
   display: block;
   height: 100%; }
@@ -142,3 +145,14 @@ tags-input .autocomplete .suggestion-list {
   border: 1px solid #9b9b9b;
   border-top: none;
   border-radius: 0 0 3px 3px; }
+
+.structure .strippe {
+  background: white;
+  margin-top: -20px;
+  padding-top: 20px;
+  margin-bottom: 20px; }
+.structure ul.slick-dots {
+  position: initial; }
+.structure .info {
+  display: inline-block;
+  margin-right: 15px; }

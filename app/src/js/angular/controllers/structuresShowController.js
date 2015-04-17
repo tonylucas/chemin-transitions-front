@@ -1,13 +1,12 @@
-app.controller('StructuresShowController', function ($scope, $stateParams, Organisations) {
+app.controller('StructuresShowController', function ($scope, $stateParams, Organisations, appConfig, authService) {
+    $scope.domain = appConfig.domain();
+    
     Organisations.getOrganization($stateParams.id).then(function (data) {
+        console.log(data);
         $scope.org = data;
-    });
-
-    $('.carousel').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear'
+        authService.getGeocode(data).then(function (response){
+            $scope.address = response[0].formatted_address;
+        });
+        
     });
 });

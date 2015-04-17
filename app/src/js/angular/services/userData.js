@@ -133,6 +133,23 @@ app.factory('userData', function ($http, $q, appConfig, ipCookie) {
                 return deferred.reject(status);
             });
             return deferred.promise;
+        },
+        deleteImage: function (id) {
+            var deferred;
+            deferred = $q.defer();
+            $http({
+                headers: {
+                    'X-token': ipCookie('token'),
+                    'X-email': ipCookie('email')
+                },
+                method: 'DELETE',
+                url: appConfig.url('organizations/images/' + id),
+            }).success(function (data, status, headers, config) {
+                return deferred.resolve(status);
+            }).error(function (data, status, headers, config) {
+                return deferred.reject(status);
+            });
+            return deferred.promise;
         }
     };
 });
