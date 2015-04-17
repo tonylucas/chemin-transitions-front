@@ -1,42 +1,63 @@
-app.controller('StructuresController', function ($scope, $stateParams, appConfig, mapService, Organisations, $timeout) {
-    $scope.movies = [];
-    $scope.placeholder = "Find Structures";
-    $timeout(function () {
-        return mapService.resetFilter();
-    });
-    Organisations.getOrganizations().then(function (organizations) {
-        var org, _i, _len, _results;
-        _results = [];
-        for (_i = 0, _len = organizations.length; _i < _len; _i++) {
-            org = organizations[_i];
-            _results.push($scope.movies.push(org.properties.name));
-        }
-        return _results;
-    });
-    $scope.filter = function (data) {
-        mapService.myLayer.setFilter(function (t) {
-            if (data === "") {
-                return true;
-            }
-            return t.properties.name === data;
+app.controller('StructuresController', function ($scope, $stateParams, appConfig, mapService, Organisations, userData, skillData, $timeout, $filter) {
+
+
+    $scope.filteredStructures = [];
+    $scope.filteredActors = [];
+    $scope.filteredSkills = [];
+
+    $scope.orgs = Organisations.getOrganisations().then(function (orgs) {
+        angular.forEach(orgs, function (org, key) {
+
+            var coo = org.geometry.coordinates;
+            var city;
+
+            $.ajax({
+                url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + coo['1'] + ',' + coo['0'] + '&sensor=true',
+                success: function (data) {
+                    angular.forEach(data.results[0].address_components, function (comp) {
+                        if (comp.types[0] == 'locality') {
+                            city = comp.long_name;
+                        }
+                    });
+
+                    $scope.filteredStructures.push({
+                        name: org.properties.name,
+                        city: city,
+                        skills: org.properties.skills,
+                        id: org.id
+                    });
+                }
+            });
+
         });
-        return mapService.myLayer.eachLayer(function (layer) {
-            var popupContent;
-            popupContent = "<div class='text-center popup'><strong>" + layer.feature.properties.name + "</strong>" + "<br><img src='" + layer.feature.avatar + "'><br>";
-            angular.forEach(layer.feature.properties.skills, function (value) {
-                return popupContent = popupContent + "<span class='tag'>" + value.name + "</span>";
-            });
-            popupContent = popupContent + "</div>";
-            layer.bindPopup(popupContent);
-            layer.on('mouseover', function (e) {
-                return layer.openPopup();
-            });
-            layer.on('mouseout', function (e) {
-                return layer.closePopup();
-            });
-            return layer.on('click', function (e) {
-                return $scope.showModal(e);
+    });
+
+    $scope.actors = userData.getPersons().then(function (persons) {
+        //        console.log(persons);
+        angular.forEach(persons, function (actor, key) {
+            $scope.filteredActors.push({
+                name: actor.fullName,
+
             });
         });
-    };
+
+    });
+
+    $scope.skills = skillData.getSkills().then(function (skills) {
+        //                console.log(skills);
+        angular.forEach(skills, function (skill, key) {
+            $scope.filteredSkills.push({
+                name: skill.name
+            });
+        });
+    });
+
+
+    $scope.filterSkills = function (skill) {
+        mapService.filterMarkers(skill.name);
+        mapService.fitMap();
+        $scope.searchText = skill.name;
+    }
+
+    
 });

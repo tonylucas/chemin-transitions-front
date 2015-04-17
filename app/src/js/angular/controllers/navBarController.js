@@ -6,6 +6,11 @@ app.controller('NavBarController', function ($scope, $modal, authService, $state
     $scope.openRegister = function () {
         authService.showRegister();
     };
+
+    $scope.openInvitation = function() {
+        authService.showInvitation();
+    };
+
     $scope.logout = function () {
         authService.destroySession();
         $state.go('index').then(function () {
@@ -14,8 +19,10 @@ app.controller('NavBarController', function ($scope, $modal, authService, $state
     };
 
     $scope.toggleViewMode = function ($event) {
-        $('.top-bar-section button').removeClass('active');
-        $($event.currentTarget).addClass('active');
-        $rootScope.$broadcast('toggleViewMode');
+        if (!$($event.currentTarget).hasClass('active')) {
+            $('.top-bar-section button').removeClass('active');
+            $($event.currentTarget).addClass('active');
+            $rootScope.$broadcast('toggleViewMode');
+        }
     }
 });

@@ -16,13 +16,69 @@ body {
   .view-navbar .autocomplete ul {
     top: 38px; }
 
+.searchTextResults {
+  margin-top: 7px; }
+
+.search-form input {
+  width: 280px;
+  padding-left: 8px;
+  border-radius: 3px; }
+
+.table-wrapper {
+  position: relative; }
+
+.table-scroll {
+  height: 90vh;
+  overflow: auto; }
+
+.table-scroll::-webkit-scrollbar {
+  display: none; }
+
+.table-wrapper table {
+  width: 100%; }
+
+table.searchTextResults tr {
+  background: none; }
+
+.searchTextResults td {
+  padding: 0; }
+
+.searchTextResults td a {
+  color: #464646;
+  text-transform: capitalize;
+  display: block;
+  margin: 10px 14px; }
+
+.searchTextResults td .city {
+  text-align: right;
+  font-size: 11px;
+  color: silver;
+  float: right;
+  line-height: 22px;
+  margin-right: 12px; }
+
+.searchTextResults td:not(.title):hover {
+  background: rgba(0, 0, 0, 0.03);
+  transition: 500ms;
+  cursor: pointer; }
+
+.searchTextResults td.title {
+  font-weight: bold;
+  line-height: 2.4em;
+  padding: 10px 14px;
+  display: block;
+  background: rgba(0, 0, 0, 0.06); }
+
 .top-bar-section .active {
   background: #007095; }
 
-.popup img {
-  max-height: 100px; }
-.popup .tag {
-  margin: 8px 3px 3px; }
+.leaflet-popup-content a {
+  font-weight: bold;
+  color: #303030; }
+
+.leaflet-popup-content a:hover {
+  color: #6a6a6a;
+  transition: 300ms; }
 
 .no-padding {
   padding: 0 !important; }
@@ -99,6 +155,9 @@ body {
 
 .autocomplete ul {
   top: 40px; }
+
+.autocomplete ul.suggestion-list {
+  top: 0; }
 
 .autocomplete li {
   text-align: left;

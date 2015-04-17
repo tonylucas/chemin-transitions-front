@@ -1,5 +1,9 @@
-app.controller('HomeController', function ($scope, authService, organizations, $modal, appConfig, mapService, $timeout) {
-    $scope.organizations = organizations;
+app.controller('HomeController', function ($scope, authService, Organisations, userData, skillData, $modal, appConfig, mapService, $timeout, $stateParams, $filter) {
+    $scope.domain = appConfig.domain();
+
+    Organisations.getOrganisations().then(function(orgs){
+        $scope.organisations = orgs;    
+    });
 
     $timeout(function () {
         mapService.resetFilter();
@@ -19,8 +23,6 @@ app.controller('HomeController', function ($scope, authService, organizations, $
         template: 'partials/list.html'
     };
 
-   
-
     $scope.closeModal = function () {
         this.modalInstance.dismiss('cancel');
     };
@@ -39,5 +41,12 @@ app.controller('HomeController', function ($scope, authService, organizations, $
         $scope.listView.active = !$scope.listView.active;
         $scope.mapView.active = !$scope.mapView.active;
     });
+
+    $scope.filterSkills = function (skill) {
+        mapService.filterMarkers(skill.name);
+        //        $scope.orgs = ;
+        mapService.fitMap();
+    }
+
 
 });

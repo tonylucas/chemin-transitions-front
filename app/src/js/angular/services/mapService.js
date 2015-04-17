@@ -15,27 +15,48 @@ app.service('mapService', function ($timeout) {
                 return result;
             });
         },
-        resetFilter: function () {
-            this.myLayer.setFilter(function (t) {
-                return true;
-            });
-            return this.myLayer.eachLayer(function (layer) {
-                var popupContent;
-                popupContent = "<div class='text-center popup'><strong>" + layer.feature.properties.name + "</strong>" + "<br><img src='" + layer.feature.avatar + "'><br>";
-                angular.forEach(layer.feature.properties.skills, function (value) {
-                    return popupContent = popupContent + "<span class='tag'>" + value.name + "</span>";
-                });
-                popupContent = popupContent + "</div>";
+        resetFilter: function ()  {
+
+        },
+        initMarkers: function () {
+            var that = this;
+            this.myLayer.eachLayer(function (layer) {
+                var popupContent = "<div class='text-center popup'><a href='#structures/" + layer.feature.id + "'>" + layer.feature.properties.name + "</a></div>";
+
                 layer.bindPopup(popupContent);
-                layer.on('mouseover', function (e) {
-                    return layer.openPopup();
+
+                layer.on('click', function (e) {
+                    layer.openPopup();
                 });
-                layer.on('mouseout', function (e) {
-                    return layer.closePopup();
+
+                that.myLayer.addLayer(layer);
+
+            });
+        },
+        fitMap: function () {
+            this.myLayer._map.fitBounds(this.myLayer.getBounds(), {
+                maxZoom: 15
+            });
+            this.myLayer.eachLayer(function (marker) {
+                marker.bounce({
+                    duration: 800,
+                    height: 140
                 });
-                return layer.on('click', function (e) {
-                    return $scope.showModal(e);
+            });
+        },
+        filterMarkers: function (data) { // To filter markers on map
+            var filteredStructures = [];
+            var that = this;
+            this.myLayer.setFilter(function (feature) {
+                
+                var tmp = false;
+                angular.forEach(feature.properties.skills, function (skill, key) {
+                    if (skill.name === data) {
+                        tmp = true;
+                    }
                 });
+                that.initMarkers();
+                return tmp;
             });
         }
     };

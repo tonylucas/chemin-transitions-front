@@ -25,7 +25,9 @@ app.controller('UsersController', function ($scope, authService, userData, skill
     skillData.getSkills().then(function (data) {
         return $scope.skills = data;
     });
+
     userData.getPersons().then(function (data) {
+
         return $scope.persons = data;
     });
     $scope.update = function (form, user) {
@@ -47,10 +49,23 @@ app.controller('UsersController', function ($scope, authService, userData, skill
             return $scope.closeAlert();
         }), 4000);
     };
+
+    $scope.loadSkills = function($query) {
+        return $scope.skills.filter(function(skill){
+            return skill.name.toLowerCase().match($query.toLowerCase());
+        })
+    }
+
+    $scope.loadPersons = function($query) {
+        return $scope.persons.filter(function(person){
+            return person.fullName.toLowerCase().match($query.toLowerCase());
+        })
+    }
     $scope.addActor = function (actor) {
         return Organisations.addActor(actor, authService.user).then(function (data) {});
     };
     $scope.removeActor = function (actor) {
+        console.log(actor)
         return Organisations.removeActor(actor, authService.user).then(function (data) {});
     };
     $scope.setUpload = function () {
