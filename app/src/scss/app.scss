@@ -25,6 +25,16 @@ body {
     margin-top: 7px;
 }
 
+.searchTextResults td {
+    position: relative;
+}
+
+.searchTextResults td .fa {
+    position: absolute;
+    right: 12px;
+    color: silver;
+}
+
 .search-form input {
     width: 280px;
     padding-left: 8px;
@@ -68,8 +78,8 @@ table.searchTextResults tr {
     font-size: 11px;
     color: silver;
     float: right;
-    line-height: 22px;
-    margin-right: 12px;
+    line-height: 17px;
+    margin-right: 18px;
 }
 
 .searchTextResults td:not(.title):hover {

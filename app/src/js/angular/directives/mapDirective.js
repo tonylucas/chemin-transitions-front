@@ -27,7 +27,7 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
                     maxZoom: 15
                 });
             } else {
-                map.setView([48.8, 2.3], 12);
+                map.setView([48.86, 2.34], 12);
             }
 
             mapService.myLayer = L.mapbox.featureLayer().addTo(map);
