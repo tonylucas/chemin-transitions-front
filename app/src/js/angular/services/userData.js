@@ -107,8 +107,8 @@ app.factory('userData', function ($http, $q, appConfig, ipCookie) {
                 },
                 data: user,
                 headers: {
-                    'token': ipCookie('token'),
-                    'email': ipCookie('email')
+                    'X-token': ipCookie('token'),
+                    'X-email': ipCookie('email')
                 }
             }).success(function (data, status, headers, config) {
                 return deferred.resolve(status);
@@ -117,7 +117,7 @@ app.factory('userData', function ($http, $q, appConfig, ipCookie) {
             });
             return deferred.promise;
         },
-        "delete": function (id) {
+        delete: function (id) {
             var deferred;
             deferred = $q.defer();
             $http({
@@ -134,14 +134,43 @@ app.factory('userData', function ($http, $q, appConfig, ipCookie) {
             });
             return deferred.promise;
         },
-        deleteImage: function (id) {
+        sendInvitation: function(invitation) {
             var deferred;
             deferred = $q.defer();
             $http({
+                method: 'POST',
+                url: appConfig.url('users/invitation'),
+                data: invitation,
                 headers: {
                     'X-token': ipCookie('token'),
                     'X-email': ipCookie('email')
                 },
+            }).success(function (data, status, headers, config) {
+                return deferred.resolve(data);
+            }).error(function (data, status, headers, config) {
+                return deferred.reject(data);
+            });
+            return deferred.promise;  
+        },
+
+        getInvitation: function(id) {
+            var deferred;
+            deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: appConfig.url('users/invitation/'+id),
+            }).success(function (data, status, headers, config) {
+                return deferred.resolve(data);
+            }).error(function (data, status, headers, config) {
+                return deferred.reject(data);
+            });
+            return deferred.promise;
+        },
+
+        deleteImage: function (id) {
+            var deferred;
+            deferred = $q.defer();
+            $http({
                 method: 'DELETE',
                 url: appConfig.url('organizations/images/' + id),
             }).success(function (data, status, headers, config) {
