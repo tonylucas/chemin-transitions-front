@@ -164,7 +164,21 @@ app.factory('userData', function ($http, $q, appConfig, ipCookie) {
             }).error(function (data, status, headers, config) {
                 return deferred.reject(data);
             });
-            return deferred.promise;   
+            return deferred.promise;
+        },
+
+            deleteImage: function (id) {
+            var deferred;
+            deferred = $q.defer();
+            $http({
+                method: 'DELETE',
+                url: appConfig.url('organizations/images/' + id),
+            }).success(function (data, status, headers, config) {
+                return deferred.resolve(status);
+            }).error(function (data, status, headers, config) {
+                return deferred.reject(status);
+            });
+            return deferred.promise;
         }
     };
 });

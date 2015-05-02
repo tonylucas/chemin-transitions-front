@@ -1,11 +1,12 @@
-<div class="row structure">
-    <div class="row header">
-        <div class="row">
+<div class="structure">
+    <div class="strippe">
+        <div class="row header">
+            <div class="row">
 
-            <div class="text-center avatar columns small-3 small-centered">
-                <img ng-src="{{org.image}}" alt="">
-            </div>
-            <!--<div class="columns large-3 small-12">
+                <div class="text-center avatar columns small-3 small-centered">
+                    <img ng-src="{{org.image}}" alt="">
+                </div>
+                <!--<div class="columns large-3 small-12">
                 <a ui-sref="structures.show({ id: org.id })"><h3>{{org.name}}</h3></a>
                 <p>{{org.email}}</p>
                 <p>{{org.phone}}</p>
@@ -20,42 +21,48 @@
                 Skills<br>
                 <a href="#" ng-if="org.skills.length>0" ng-repeat="skill in org.skills" class="tag">{{skill.name}}</a>
             </div>-->
-        </div>
-        <div class="row">
-            <div class="text-center columns small-3 small-centered">
-                <a ui-sref="structures.show({ id: org.id })"><h3>{{org.name}}</h3></a>
-                <p>{{org.address}}</p>
-                <p>{{org.email}}</p>
-                <p>{{org.phone}}</p>
-                <p>{{org.createdAt}}</p>
+            </div>
+            <div class="row">
+                <div class="text-center columns small-3 small-centered">
+                    <a ui-sref="structures.show({ id: org.id })"><h3>{{org.name}}</h3></a>
+                    <p>{{address}}</p>
+                    <p>{{org.email}}</p>
+                    <p>{{org.phone}}</p>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="row main">
         <div class="columns large-8 content">
-            <div class="description">
-                <!--{{org.description}}-->
-                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias et est nisi provident voluptas veritatis sunt nesciunt cupiditate reprehenderit assumenda, officia quas nostrum hic, labore error fuga repellendus aliquam iusto.</div>
-                <div>Reprehenderit fuga autem quaerat quam possimus, aliquam laborum accusamus soluta tempora. Ipsum dolor accusamus ut porro alias laboriosam, esse! Architecto, et debitis sunt? Modi cum, excepturi ullam, quisquam ipsa hic.</div>
+            <div class="row description">
+                {{org.description}}
             </div>
+            <br>
 
-            <div class="row text-center carousel">
-                <div ng-repeat="img in org.images">
-                    <div class="image" style="display:inline-block;">
-                        <img src="{{ymg.url}}">
-                    </div>
+            <div class="heading">
+                Carousel
+            </div>
+            <div carousel class="row text-center carousel">
+                <div class="image" style="display:inline-block;" ng-repeat="img in org.images">
+                    <img ng-src="{{domain}}{{img.url}}">
                 </div>
             </div>
 
-            <div class="actors" ng-if="org.actors.length>0" ng-repeat="actor in org.actors">
+            <div class="actors" ng-if="org.actors.length>0">
                 <div class="heading">
                     Actors
                 </div>
-                <img ng-src="{{actor.image}}" alt="">
-                <span>{{actor.fullName}}</span>
-                <span>{{actor.email}}</span>
-                <span>{{actor.tel}}</span>
+                <ul class="info small-block-grid-1" ng-repeat="actor in org.actors">
+                    <li>
+                        <img ng-src="{{actor.image}}" alt="">
+                        <br>
+                        <span>{{actor.fullName}}</span>
+                        <br>
+                        <span>{{actor.email}}</span>
+                        <br>
+                        <span>{{actor.phone}}</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -64,13 +71,13 @@
             <!--<div class="heading"><span>Nearby Labs</span>
             </div>-->
 
-            <div ng-if="org.link.length>0">
+            <div ng-if="org.url.length>0">
                 <div class="heading"><span>External Links</span>
                 </div>
                 <ul class="links">
                     <li>
-                        <a href="{{org.link}}"><i class="fa fa-link"></i>
-                        <span class="url" itemprop="sameAs">{{org.link}}</span>
+                        <a href="{{org.url}}"><i class="fa fa-link"></i>
+                        <span class="url" itemprop="sameAs">{{org.url}}</span>
                     </a>
                     </li>
                 </ul>
