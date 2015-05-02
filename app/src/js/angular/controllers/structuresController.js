@@ -13,11 +13,14 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
             $.ajax({
                 url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + coo['1'] + ',' + coo['0'] + '&sensor=true',
                 success: function (data) {
-                    angular.forEach(data.results[0].address_components, function (comp) {
-                        if (comp.types[0] == 'locality') {
-                            city = comp.long_name;
-                        }
-                    });
+                    if(data.results[0]){
+                        angular.forEach(data.results[0].address_components, function (comp) {
+                            if (comp.types[0] == 'locality') {
+                                city = comp.long_name;
+                            }
+                        });
+                    }
+                   
 
                     $scope.filteredStructures.push({
                         name: org.properties.name,
