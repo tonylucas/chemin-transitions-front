@@ -36,7 +36,8 @@ body {
   position: relative; }
 
 .table-scroll {
-  height: 90vh;
+  min-height: 40px;
+  max-height: 90vh;
   overflow: auto; }
 
 .table-scroll::-webkit-scrollbar {
