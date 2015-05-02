@@ -46,6 +46,9 @@
                     <img ng-src="{{domain}}{{img.url}}">
                 </div>
             </div>
+            
+
+            
 
             <div class="actors" ng-if="org.actors.length>0">
                 <div class="heading">
@@ -54,11 +57,8 @@
                 <ul class="info small-block-grid-1" ng-repeat="actor in org.actors">
                     <li>
                         <img ng-src="{{actor.image}}" alt="">
-                        <br>
                         <span ng-bind="actor.fullName"></span>
-                        <br>
                         <span ng-bind="actor.email"></span>
-                        <br>
                         <span ng-bind="actor.phone"></span>
                     </li>
                 </ul>

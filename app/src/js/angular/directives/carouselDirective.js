@@ -3,7 +3,7 @@ app.directive('carousel', function ($timeout, Organisations, $modal, appConfig) 
         restrict: "A",
         link: function (scope, element, attrs, ctrl, e) {
             $timeout(function () {
-                element.slick({
+                $(element).slick({
                     dots: true,
                     infinite: true,
                     speed: 500,
