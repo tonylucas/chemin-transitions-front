@@ -1,5 +1,4 @@
-sssss
-   <div class="table-wrapper">
+<div class="table-wrapper">
     <div class="table-scroll">
         <input listen-focus ng-model="searchText" ng-change="filterDatas()" placeholder="Search someone, a structure or a skill...">
 
@@ -18,7 +17,7 @@ sssss
             </tr>
             <tr ng-repeat="structure in structuresResult  = (filteredStructures | andFilter: searchText: 'AND' | orderBy : 'name')">
                 <td>
-                <a ui-sref="structures.show({ id: structure.id })" ng-click="">{{structure.name}}<span class="city">{{structure.city}}</span></a>
+                    <a ui-sref="structures.show({ id: structure.id })" ng-click="">{{structure.name}}<span class="city">{{structure.city}}</span></a>
                 </td>
             </tr>
 

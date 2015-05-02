@@ -167,7 +167,7 @@ app.factory('userData', function ($http, $q, appConfig, ipCookie) {
             return deferred.promise;
         },
 
-            deleteImage: function (id) {
+        deleteImage: function (id) {
             var deferred;
             deferred = $q.defer();
             $http({

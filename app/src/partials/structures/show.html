@@ -24,18 +24,17 @@
             </div>
             <div class="row">
                 <div class="text-center columns small-3 small-centered">
-                    <a ui-sref="structures.show({ id: org.id })"><h3>{{org.name}}</h3></a>
-                    <p>{{address}}</p>
-                    <p>{{org.email}}</p>
-                    <p>{{org.phone}}</p>
+                    <a ui-sref="structures.show({ id: org.id })"><h3 ng-bind="org.name"></h3></a>
+                    <p ng-bind="address"></p>
+                    <p ng-bind="org.email"></p>
+                    <p ng-bind="org.phone"></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row main">
         <div class="columns large-8 content">
-            <div class="row description">
-                {{org.description}}
+            <div class="row description" ng-bind="org.description">
             </div>
             <br>
 
@@ -56,11 +55,11 @@
                     <li>
                         <img ng-src="{{actor.image}}" alt="">
                         <br>
-                        <span>{{actor.fullName}}</span>
+                        <span ng-bind="actor.fullName"></span>
                         <br>
-                        <span>{{actor.email}}</span>
+                        <span ng-bind="actor.email"></span>
                         <br>
-                        <span>{{actor.phone}}</span>
+                        <span ng-bind="actor.phone"></span>
                     </li>
                 </ul>
             </div>
@@ -77,7 +76,7 @@
                 <ul class="links">
                     <li>
                         <a href="{{org.url}}"><i class="fa fa-link"></i>
-                        <span class="url" itemprop="sameAs">{{org.url}}</span>
+                        <span class="url" itemprop="sameAs" ng-bind="org.url"></span>
                     </a>
                     </li>
                 </ul>
@@ -87,7 +86,7 @@
                 <strong>Skills</strong>
             </div>
             <ul class="skills">
-                <li ng-if="org.skills.length>0" ng-repeat="skill in org.skills" class="tag">{{skill.name}}</li>
+                <li ng-if="org.skills.length>0" ng-repeat="skill in org.skills" class="tag" ng-bind="skill.name"></li>
             </ul>
 
         </div>

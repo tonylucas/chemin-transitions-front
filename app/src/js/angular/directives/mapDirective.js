@@ -31,7 +31,7 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
             }
 
             mapService.myLayer = L.mapbox.featureLayer().addTo(map);
-            
+        
             
             // display markers on the map
             Organisations.getOrganisations().then(function(orgs){                
