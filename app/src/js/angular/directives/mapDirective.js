@@ -31,19 +31,28 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
             }
 
             mapService.myLayer = L.mapbox.featureLayer().addTo(map);
+        
+            
+            // display markers on the map
+            Organisations.getOrganisations().then(function(orgs){                
+                for (_i = 0, _len = orgs.length; _i < _len; _i++) {
+                    org = orgs[_i];
+                    org.avatar = appConfig.domain() + org.image;
+                    org.properties['marker-color'] = '#f86767';
+                }
+                Organisations.getTechonmapDatas().then(function(techonmapOrgs){
 
+                    for (_i = 0, _len = techonmapOrgs.length; _i < _len; _i++) {
+                        org = techonmapOrgs[_i];
+                        org.avatar = appConfig.domain() + org.image;
+                        org.properties['marker-color'] = '#f86767';
+                    }
+                    /// merge JSON array from our database and techonmap data
+                    mapService.myLayer.setGeoJSON(_.union(orgs,techonmapOrgs));
 
-
-            var orgs = scope.organisations;
-            for (_i = 0, _len = orgs.length; _i < _len; _i++) {
-                org = orgs[_i];
-                org.avatar = appConfig.domain() + org.image;
-                org.properties['marker-color'] = '#f86767';
-            }
-            mapService.myLayer.setGeoJSON(orgs);
-
-            mapService.initMarkers();
-
+                    mapService.initMarkers();
+                });
+            });
         }
     };
 });
