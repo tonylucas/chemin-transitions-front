@@ -35,7 +35,7 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
 
         Organisations.getTechonmapDatas().then(function (techonmapOrgs) {
             angular.forEach(techonmapOrgs, function (techonmapOrg) {
-//                console.log(techonmapOrg);
+                //                console.log(techonmapOrg);
                 $scope.filteredStructures.push({
                     name: techonmapOrg.properties.name,
                     city: techonmapOrg.properties.city,
@@ -62,11 +62,35 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
 
     $scope.skills = skillData.getSkills().then(function (skills) {
         //                console.log(skills);
-        angular.forEach(skills, function (skill, key) {
+        angular.forEach(skills, function (skill) {
             $scope.filteredSkills.push({
                 name: skill.name
             });
         });
+
+        var tags = [];
+        var formatedTags = [];
+
+
+        Organisations.getTechonmapDatas().then(function (techonmapOrgs) {
+            angular.forEach(techonmapOrgs, function (techonmapOrg) {
+                tags = _.union(tags, techonmapOrg.properties.tags);
+            });
+
+            tags = _.uniq(tags);
+
+            formatedTags = _.map(tags,
+                function (tagName) {
+                    return {
+                        name: tagName
+                    };
+                });
+
+            $scope.filteredSkills = _.union($scope.filteredSkills, formatedTags)
+        });
+
+
+
     });
 
     $scope.filterSkills = function (skill) {

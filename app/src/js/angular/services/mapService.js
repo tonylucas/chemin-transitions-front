@@ -46,7 +46,6 @@ app.service('mapService', function ($timeout) {
         },
         filterMarkers: function (data) { // To filter markers on map from skills conditions
 
-
             var filteredStructures = [];
             var that = this;
 
@@ -59,10 +58,22 @@ app.service('mapService', function ($timeout) {
             } else {
 
                 this.myLayer.setFilter(function (feature) {
+                    console.log(feature);
                     var matching = false;
                     angular.forEach(feature.properties.skills, function (skill) {
                         angular.forEach(data, function (skillCondition) {
                             if (skill.name === skillCondition) {
+
+                                matching = true;
+                                filteredStructures.push(feature);
+                            }
+                        });
+                    });
+
+                    angular.forEach(feature.properties.tags, function (tag) {
+                        angular.forEach(data, function (skillCondition) {
+                            if (tag === skillCondition) {
+
                                 matching = true;
                                 filteredStructures.push(feature);
                             }
@@ -73,11 +84,7 @@ app.service('mapService', function ($timeout) {
                 });
 
             }
-
-
-
             return filteredStructures;
-
 
         }
     };
