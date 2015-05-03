@@ -17,7 +17,7 @@
             </tr>
             <tr ng-repeat="structure in structuresResult  = (filteredStructures | andFilter: searchText: 'AND' | orderBy : 'name')">
                 <td>
-                    <a ui-sref="structures.show({ id: structure.id })" ng-click="">{{structure.name}} <i class="fa fa-home"></i><span class="city">{{structure.city}}</span></a>
+                    <a ui-sref="structures.show({ id: structure.id })">{{structure.name}} <i class="fa fa-home"></i><span class="city">{{structure.city}}</span></a>
                 </td>
             </tr>
 
