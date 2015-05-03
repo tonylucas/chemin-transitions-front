@@ -1,4 +1,3 @@
-
 app.controller('StructuresController', function ($scope, $stateParams, appConfig, mapService, Organisations, userData, skillData, $timeout, $filter, $rootScope) {
     $scope.filteredStructures = [];
     $scope.filteredActors = [];
@@ -14,14 +13,14 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
             $.ajax({
                 url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + coo['1'] + ',' + coo['0'] + '&sensor=true',
                 success: function (data) {
-                    if(data.results[0]){
+                    if (data.results[0]) {
                         angular.forEach(data.results[0].address_components, function (comp) {
                             if (comp.types[0] == 'locality') {
                                 city = comp.long_name;
                             }
                         });
                     }
-                   
+
 
                     $scope.filteredStructures.push({
                         name: org.properties.name,
@@ -33,6 +32,21 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
             });
 
         });
+
+        Organisations.getTechonmapDatas().then(function (techonmapOrgs) {
+            angular.forEach(techonmapOrgs, function (techonmapOrg) {
+//                console.log(techonmapOrg);
+                $scope.filteredStructures.push({
+                    name: techonmapOrg.properties.name,
+                    city: techonmapOrg.properties.city,
+                    skills: techonmapOrg.properties.tags,
+                    id: techonmapOrg.id
+                });
+            });
+        });
+
+
+
     });
 
     $scope.actors = userData.getPersons().then(function (persons) {
@@ -57,18 +71,18 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
 
     $scope.filterSkills = function (skill) {
         $scope.currentFilter.push(skill.name);
-        
+
         var filteredOrgs = [];
         filteredOrgs = mapService.filterMarkers($scope.currentFilter);
-        
+
         $rootScope.$broadcast('updateStructuresList', filteredOrgs);
         mapService.fitMap();
         $scope.searchText = skill.name;
     }
-    
+
     $scope.removeFilter = function (skillName) {
         $scope.currentFilter = _.without($scope.currentFilter, skillName)
-        
+
         var filteredOrgs = [];
         filteredOrgs = mapService.filterMarkers($scope.currentFilter);
 
@@ -77,5 +91,5 @@ app.controller('StructuresController', function ($scope, $stateParams, appConfig
     }
 
 
-    
+
 });

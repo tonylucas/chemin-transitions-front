@@ -2,6 +2,13 @@ app.controller('HomeController', function ($scope, authService, organisations, O
 
     $scope.organisations = organisations;
 
+    Organisations.getTechonmapDatas().then(function (techonmapOrgs) {
+        angular.forEach(techonmapOrgs, function (techonmapOrg) {
+            $scope.organisations.push(techonmapOrg);
+        });
+    });
+
+
     $timeout(function () {
         mapService.resetFilter();
     });

@@ -32,11 +32,12 @@ body {
 .searchTextResults td .fa {
     position: absolute;
     right: 12px;
+    bottom: 11px;
     color: silver;
 }
 
 .search-form input {
-    width: 280px;
+    width: 400px;
     padding-left: 8px;
     border-radius: 3px;
 }
@@ -80,8 +81,7 @@ table.searchTextResults tr {
     font-size: 11px;
     color: silver;
     float: right;
-    line-height: 17px;
-    margin-right: 18px;
+    margin: 1px 18px 0 0;
 }
 
 .searchTextResults td:not(.title):hover {
