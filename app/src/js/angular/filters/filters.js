@@ -35,7 +35,7 @@ app.filter("andFilter", function () {
                     var itemSkills = [];
 
                     angular.forEach(items[x].skills, function (value) {
-                        itemSkills.push(value.name + " ");
+                        itemSkills.push(value.name || value + " ");
                     });
 
 
