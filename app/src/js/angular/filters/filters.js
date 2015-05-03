@@ -40,7 +40,6 @@ app.filter("andFilter", function () {
 
 
                     if (re.test(itemSkills + items[x].name + items[x].city)) {
-                        console.log('correspond');
                         // On vérifie si l'item est déjà dans les résultats
                         var test = _.find(returnArray, function (item) {
                             return item.name == items[x].name
@@ -50,8 +49,6 @@ app.filter("andFilter", function () {
                         if (angular.isUndefined(test)) {
                             returnArray.push(items[x]);
                         }
-                    } else {
-                        console.log('ne correspond pas');
                     }
 
                 } else {

@@ -40,6 +40,12 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
                     org.avatar = appConfig.domain() + org.image;
                     org.properties['marker-color'] = '#f86767';
                 }
+                
+                // Enlever quand le back de techonmap marche
+                mapService.myLayer.setGeoJSON(orgs);
+                mapService.initMarkers();
+                
+                
                 Organisations.getTechonmapDatas().then(function(techonmapOrgs){
 
                     for (_i = 0, _len = techonmapOrgs.length; _i < _len; _i++) {
@@ -47,7 +53,7 @@ app.directive('map', function (Organisations, $modal, appConfig, mapService, $ti
                         org.avatar = appConfig.domain() + org.image;
                         org.properties['marker-color'] = '#f86767';
                     }
-                    /// merge JSON array from our database and techonmap data
+                    // merge JSON array from our database and techonmap data
                     mapService.myLayer.setGeoJSON(_.union(orgs,techonmapOrgs));
 
                     mapService.initMarkers();
