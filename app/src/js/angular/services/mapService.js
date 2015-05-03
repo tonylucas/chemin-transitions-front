@@ -44,25 +44,41 @@ app.service('mapService', function ($timeout) {
                 });
             });
         },
-        filterMarkers: function (data) { // To filter markers on map
+        filterMarkers: function (data) { // To filter markers on map from skills conditions
+
+
             var filteredStructures = [];
             var that = this;
-            this.myLayer.setFilter(function (feature) {
-                
-                var tmp = false;
-                angular.forEach(feature.properties.skills, function (skill, key) {
-                    if (skill.name === data) {
-                        tmp = true;
-                        filteredStructures.push(feature);
-                    }
+
+            if (data.length == 0) { // Show all markers
+                this.myLayer.setFilter(function (feature) {
+                    filteredStructures.push(feature);
+                    that.initMarkers();
+                    return true;
                 });
-                that.initMarkers();
-                return tmp;
-            });
-            
+            } else {
+
+                this.myLayer.setFilter(function (feature) {
+                    var matching = false;
+                    angular.forEach(feature.properties.skills, function (skill) {
+                        angular.forEach(data, function (skillCondition) {
+                            if (skill.name === skillCondition) {
+                                matching = true;
+                                filteredStructures.push(feature);
+                            }
+                        });
+                    });
+                    that.initMarkers();
+                    return matching;
+                });
+
+            }
+
+
+
             return filteredStructures;
-            
-            
+
+
         }
     };
 });

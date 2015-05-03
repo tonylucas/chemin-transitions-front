@@ -33,7 +33,8 @@ body {
   border-radius: 3px; }
 
 .table-wrapper {
-  position: relative; }
+  position: relative;
+  display: inline-block; }
 
 .table-scroll {
   min-height: 40px;
@@ -77,6 +78,16 @@ table.searchTextResults tr {
   padding: 10px 14px;
   display: block;
   background: rgba(0, 0, 0, 0.06); }
+
+.current-filters {
+  display: inline-block;
+  vertical-align: top;
+  margin: 11px 0 0 11px; }
+  .current-filters .tag {
+    cursor: pointer;
+    padding: 2px 4px 0; }
+  .current-filters .tag:hover {
+    background: #CC3939; }
 
 .top-bar-section .active {
   background: #007095; }
