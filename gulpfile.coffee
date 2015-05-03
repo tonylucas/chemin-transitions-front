@@ -22,7 +22,7 @@ watch = ->
 
 #js concatenation
 gulp.task 'concat', ->
-    gulp.src 'app/src/js/*.js'
+    gulp.src 'app/src/js/angular/**/*.js'
     .pipe $.concat 'main.js' 
     .pipe gulp.dest 'public/javascripts'
 
