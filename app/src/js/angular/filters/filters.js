@@ -21,7 +21,7 @@ app.filter("andFilter", function () {
                 splitext = searchText.toString().toLowerCase().split(/\s+/),
                 // Build Regexp with logical AND using "look ahead assertions"
                 regexp_and = "(?=.*" + splitext.join(")(?=.*") + ")",
-                //                regexp_and = "(^" + splitext.join(")(?=.*") + ")",
+                // regexp_and = "(^" + splitext.join(")(?=.*") + ")",
                 // Build Regexp with logical OR
                 regexp_or = searchText.toString().toLowerCase().replace(/\s+/g, "|"),
                 // Compile the regular expression
@@ -31,16 +31,29 @@ app.filter("andFilter", function () {
 
                 // If has skills check on skills
                 if (angular.isDefined(items[x].skills)) {
-                    for (var y = 0; y < items[x].skills.length; y++) {
-                        if (re.test(items[x].skills[y].name + items[x].name + items[x].city)) {
-                            var test = _.find(returnArray, function (item) {
-                                return item.name == items[x].name
-                            });
-                            if (angular.isUndefined(test)) {
-                                returnArray.push(items[x]);
-                            }
+
+                    var itemSkills = [];
+
+                    angular.forEach(items[x].skills, function (value) {
+                        itemSkills.push(value.name + " ");
+                    });
+
+
+                    if (re.test(itemSkills + items[x].name + items[x].city)) {
+                        console.log('correspond');
+                        // On vérifie si l'item est déjà dans les résultats
+                        var test = _.find(returnArray, function (item) {
+                            return item.name == items[x].name
+                        });
+
+                        // Si l'item n'est pas déjà validé on l'ajoute aux résultats
+                        if (angular.isUndefined(test)) {
+                            returnArray.push(items[x]);
                         }
+                    } else {
+                        console.log('ne correspond pas');
                     }
+
                 } else {
                     // If has no skills check only on name and city
                     if (re.test(items[x].name + items[x].city)) {

@@ -41,10 +41,10 @@ app.controller('HomeController', function ($scope, authService, organisations, O
 
     $scope.filterSkills = function (skill) {
         mapService.filterMarkers(skill.name);
-        //        $scope.orgs = ;
+//        $scope.orgs = [];
         mapService.fitMap();
     }
-    
+
     $scope.$on('updateStructuresList', function (event, filteredOrgs) {
         $scope.organisations = filteredOrgs;
     });
