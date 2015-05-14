@@ -1,3 +1,4 @@
+/*Directive of carousel (cf: slick carousel jquery)*/
 app.directive('carousel', function ($timeout, Organisations, $modal, appConfig) {
     return {
         restrict: "A",
