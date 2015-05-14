@@ -4,9 +4,9 @@
 
 Lancer ces commandes dans l'odre:
 
-* gulp
 * bower install
 * npm install
+* gulp
 
 Pour lancer le projet:
 
