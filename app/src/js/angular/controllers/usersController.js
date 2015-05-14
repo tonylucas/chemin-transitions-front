@@ -158,12 +158,12 @@ app.controller('UsersController', function ($scope, authService, userData, skill
                     });
                     console.log(file);
                 });
-
+                //If the number of files exceeded
                 this.on("maxfilesexceeded", function (file) {
                     this.removeFile(file);
                     console.log('limit');
                 });
-
+                //On success
                 this.on("success", function (file, response) {
                     file.id = response._id;
                 });
